@@ -4,6 +4,9 @@ import { StyleSheet } from "react-native";
 
 export const globalColors = {
     primary: '#17B39C',
+
+
+    borderColor: 'rgba(0,0,0,0.2)',
 }
 
 export const globalStyles = StyleSheet.create({
@@ -28,6 +31,14 @@ export const globalStyles = StyleSheet.create({
 
     textButton: {
         textAlign: 'center',
+    },
+
+    input: {
+        borderWidth: 1,
+        borderColor: globalColors.borderColor,
+        borderRadius: 10,
+        paddingVertical: 8,
+        paddingHorizontal: 10,
     },
 
     // AUTH

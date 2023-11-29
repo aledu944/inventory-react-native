@@ -1,7 +1,13 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen, RegisterScreen } from '../screens';
 
-const Stack = createStackNavigator();
+
+export type AuthNavigatorParams = {
+    Login: undefined,
+    Register: undefined,
+} 
+
+const Stack = createStackNavigator<AuthNavigatorParams>();
 
 export const AuthNavigator = () => {
     return (

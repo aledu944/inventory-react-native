@@ -1,27 +1,47 @@
-
-import { Pressable, Text, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useState } from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { Pressable, Text, TextInput, View } from 'react-native'
 
 import { PrimaryButton } from '../shared/PrimaryButton';
 import { globalColors, globalStyles } from '../../theme/theme'
+import { AuthNavigatorParams } from '../../routes/AuthNavigator';
+
 
 export const LoginForm = () => {
 
-    const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const navigation = useNavigation<NavigationProp<AuthNavigatorParams>>();
 
-    const handleNavigate = (screen: string) => {
-        navigation.navigate(screen as never);
+
+    const handleSubmit = () => {
+        console.log({email, password});
     }
 
 
     return (
-        <View style={ globalStyles.authForm }>
+        <View style={globalStyles.authForm}>
             <Text style={globalStyles.title1}>Iniciar Sesion</Text>
 
-            <PrimaryButton label='Iniciar Sesion' onPress={() => handleNavigate('Register')} />
+            <TextInput
+                placeholder='Correo electronico'
+                onChangeText={setEmail}
+                style={globalStyles.input}
+            />
 
-            <Pressable onPress={() => handleNavigate('Register')}>
-                <Text style={{ color: globalColors.primary }}>Registrate</Text>
+            <TextInput
+                placeholder='Contraseña'
+                onChangeText={setPassword}
+                style={globalStyles.input}
+                secureTextEntry
+            />
+
+
+            <PrimaryButton label='Iniciar Sesion' onPress={handleSubmit} />
+
+            <Pressable onPress={() => navigation.navigate('Register')}>
+                <Text style={{ color: globalColors.primary, textAlign: 'center' }}>¿Aun no tiene una cuenta? Registrate</Text>
             </Pressable>
         </View>
     )
