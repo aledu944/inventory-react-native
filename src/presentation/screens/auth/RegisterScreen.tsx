@@ -1,11 +1,12 @@
 
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const LoginScreen = () => {
+export const RegisterScreen = () => {
     return (
         <SafeAreaView>
-            <Text>Login Screen</Text>
+            <Text>Register Screen</Text>
+
         </SafeAreaView>
     )
 }
