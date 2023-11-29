@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native'
-import { Pressable, Text, TextInput, View } from 'react-native'
+import { Pressable, Text, TextInput, ToastAndroid, View } from 'react-native'
 
+import { useAuth } from '../../hooks';
 import { PrimaryButton } from '../shared/PrimaryButton';
 import { globalColors, globalStyles } from '../../theme/theme'
 import { AuthNavigatorParams } from '../../routes/AuthNavigator';
 
 
 export const LoginForm = () => {
+
+    const { loginWithEmailAndPassword } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,7 +19,20 @@ export const LoginForm = () => {
 
 
     const handleSubmit = () => {
-        console.log({email, password});
+
+        if( email.trim() === '' ){
+            ToastAndroid.show('Ingrese un correo valido', ToastAndroid.SHORT);
+            return;
+        }
+
+        if( password.trim() === '' || password.length < 6 ){
+            ToastAndroid.show('Contraseña invalida', ToastAndroid.SHORT);
+            return;
+        }
+
+        loginWithEmailAndPassword(email, password);
+        
+
     }
 
 
