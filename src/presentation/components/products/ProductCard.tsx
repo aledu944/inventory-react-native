@@ -8,7 +8,6 @@ interface Props {
 }
 
 export const ProductCard = ({ product }: Props) => {
-    console.log(product.image)
     return (
         <Pressable style={ globalStyles.productCard }>
             <Image

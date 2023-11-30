@@ -1,14 +1,15 @@
-
-import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
+import { StatusBar } from 'expo-status-bar'
 import { FlatList, Text, View } from 'react-native'
-import { productsRepository } from '../../../domain';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Product } from '../../../domain/models';
+
 import { globalStyles } from '../../theme/theme';
-import { ProductCard } from '../../components';
+import { Product } from '../../../domain/models';
+import { productsRepository } from '../../../domain';
+import { ProductCard, SearchInputProduct } from '../../components';
 
 export const ProductsScreen = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
 
     const getAllProducts = async () => {
@@ -19,14 +20,20 @@ export const ProductsScreen = () => {
 
     useEffect(() => {
       getAllProducts();
-        
     }, [])
     
     
 
     return (
-        <View style={ globalStyles.container }>
+        <View style={{...globalStyles.container, gap: 20 }}>
             <StatusBar  style='light'/>
+            <View>
+                <Text style={{...globalStyles.title1 }}>Productos mas populares</Text>
+                <Text>Encuentra el producto de tu interes</Text>
+            </View>
+
+            <SearchInputProduct/>
+
             <FlatList
                 key={'#'}
                 keyExtractor={item => "#" + item.id}
@@ -35,8 +42,8 @@ export const ProductsScreen = () => {
                     <ProductCard  product={item}/>
                 )}
                 numColumns={2}
-                columnWrapperStyle={{ gap: 20 }}
-                contentContainerStyle={{ gap: 20, justifyContent: 'center', alignItems: 'center' }}
+                columnWrapperStyle={{ gap: 24 }}
+                contentContainerStyle={{  gap: 24 }}
             />
         </View>
     )

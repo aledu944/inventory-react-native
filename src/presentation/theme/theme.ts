@@ -5,6 +5,9 @@ import { StyleSheet } from "react-native";
 export const globalColors = {
     primary: '#17B39C',
 
+    dark: {
+        100: 'rgba(0,0,0,0.05)',
+    },
 
     borderColor: 'rgba(0,0,0,0.2)',
 }
@@ -70,6 +73,17 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 10,
     },
 
+    searchInput: {
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: globalColors.dark[100],
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 10,  
+    },
+
     // AUTH
     bgAuth: {
         flex: 1,
@@ -88,12 +102,14 @@ export const globalStyles = StyleSheet.create({
     // PRODUCTS
     productCard: {
         // maxWidth: 150,
-        width: '48%',
+        width: '47%',
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',
         backgroundColor: 'white',
         gap: 10,
         ...globalShadows.shadow_md
-    }
+    },
+
+    
 })

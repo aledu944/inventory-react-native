@@ -1,4 +1,6 @@
+export { SearchInputProduct } from "./products/SearchInputProduct";
 export { ProductCard } from "./products/ProductCard";
+
 
 // AUTH
 export { LoginForm } from "./auth/LoginForm";
