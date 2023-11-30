@@ -13,8 +13,21 @@ async function login( email: string, password: string){
     }
 }
 
+async function checkAuth( token: string ){
+    try {
+        const { data } = await inventoryApi.get<LoginResponse>('/auth/check-auth', {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 export default {
     login,
+    checkAuth
 }

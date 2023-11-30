@@ -37,9 +37,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     async function checkAuth() {
         const token = await AsyncStorage.getItem('AUTH_TOKEN');
-        console.log(token);
 
         if( !token ){
+            setAuthState('not-auth');
+            return;
+        }
+        try {
+            const data = await authRepository.checkAuth(token);
+            await AsyncStorage.setItem('AUTH_TOKEN', data.token);
+            setSession({ user: data.user, token: data.token });
+            setAuthState('auth');
+            
+        } catch (error) {
+            axiosError(error);
             setAuthState('not-auth');
             return;
         }
@@ -54,6 +64,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         <AuthContext.Provider
             value={{
                 session,
+                authState,
                 // METHODS
                 loginWithEmailAndPassword
             }}
