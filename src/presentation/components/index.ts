@@ -1,3 +1,7 @@
+// SHARED
+export { PrimaryButton } from "./shared/PrimaryButton";
+export { CircularProgress } from "./shared/CircularProgress";
+
 export { SearchInputProduct } from "./products/SearchInputProduct";
 export { ProductCard } from "./products/ProductCard";
 
@@ -6,6 +10,5 @@ export { ProductCard } from "./products/ProductCard";
 export { LoginForm } from "./auth/LoginForm";
 export { RegisterForm } from "./auth/RegisterForm";
 
-// SHARED
-export { PrimaryButton } from "./shared/PrimaryButton";
+
 
