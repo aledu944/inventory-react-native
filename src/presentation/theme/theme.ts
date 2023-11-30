@@ -9,6 +9,30 @@ export const globalColors = {
     borderColor: 'rgba(0,0,0,0.2)',
 }
 
+const globalShadows = StyleSheet.create({
+    shadow_sm: {
+        shadowColor: globalColors.primary,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 4.59,
+        elevation: 5
+    },
+
+    shadow_md: {
+        shadowColor: globalColors.primary,
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity:  0.20,
+        shadowRadius: 5.62,
+        elevation: 7
+    },
+})
+
 export const globalStyles = StyleSheet.create({
     // REUSABLE
     container: {
@@ -19,6 +43,11 @@ export const globalStyles = StyleSheet.create({
 
     title1: {
         fontSize: 20,
+        fontWeight: 'bold',
+    },
+
+    title2: {
+        fontSize: 16,
         fontWeight: 'bold',
     },
 
@@ -54,5 +83,17 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
         gap: 20
+    },
+
+    // PRODUCTS
+    productCard: {
+        // maxWidth: 150,
+        width: '48%',
+        padding: 10,
+        borderRadius: 10,
+        alignItems: 'center',
+        backgroundColor: 'white',
+        gap: 10,
+        ...globalShadows.shadow_md
     }
 })

@@ -1,15 +1,21 @@
 import { ProductsScreen, SystemScreen } from '../screens';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { globalColors } from '../theme/theme';
-import { Text } from 'react-native';
+import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
+import { globalColors, globalStyles } from '../theme/theme';
 import Icon from 'react-native-vector-icons/Feather';
+import { Image, Pressable, Text, View } from 'react-native';
+import { useAuth } from '../hooks';
+import { StatusBar } from 'expo-status-bar';
 
 const Drawer = createDrawerNavigator();
 
 export const AppNavigator = () => {
     return (
+
+        
         <Drawer.Navigator
+            drawerContent={CustomDrawerContent}
             screenOptions={{
+    
                 drawerType: 'slide',
                 drawerActiveBackgroundColor: globalColors.primary,
                 drawerActiveTintColor: 'white',
@@ -42,7 +48,32 @@ export const AppNavigator = () => {
                 }}
                 component={SystemScreen}
             />
-            {/* <Drawer.Screen options={{ headerShown: false }} name="System" component={SystemScreen} /> */}
         </Drawer.Navigator>
     );
+}
+
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+    const { session, closeSession } = useAuth();
+    const { user } = session;
+
+    return (
+        <DrawerContentScrollView>
+            <View style={{ paddingHorizontal: 15, marginBottom: 10, justifyContent:'center', alignItems: 'center' }}>
+                <Image
+                    source={{ uri:'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }}
+                    style={{ width: 70, height: 70, borderRadius: 100, marginBottom: 20 }}
+                />
+                <Text style={{ textAlign:'center', fontSize: 12, fontWeight: '600' }}>{ user.name + ' ' + user.lastname }</Text>
+                <Text style={{ textAlign:'center', fontSize: 12 }}>{ user.email  }</Text>
+            </View>
+
+            <DrawerItemList {...props}/>
+            <View style={{ paddingHorizontal: 15, marginTop: 20 }}>
+                <Pressable onPress={closeSession} style={{ flexDirection: 'row', gap: 32, paddingHorizontal: 15 }}>
+                    <Icon size={ 20 } name='log-out'/>
+                    <Text>Cerrar sesion</Text>
+                </Pressable>
+            </View>
+        </DrawerContentScrollView>
+    )
 }

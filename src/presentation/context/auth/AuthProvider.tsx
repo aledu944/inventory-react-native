@@ -31,6 +31,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             setAuthState('not-auth');
             axiosError(error);
         }
+    }
+
+    async function closeSession() {
+        await AsyncStorage.removeItem('AUTH_TOKEN');
+        setAuthState('not-auth');
+        checkAuth();
         
     }
 
@@ -66,7 +72,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 session,
                 authState,
                 // METHODS
-                loginWithEmailAndPassword
+                closeSession,
+                loginWithEmailAndPassword,
             }}
         
         >
