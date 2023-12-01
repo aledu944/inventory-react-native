@@ -1,5 +1,6 @@
 import inventoryApi from "../../data";
 import { Product } from "../models";
+import productService from "../services/productService";
 
 
 async function findMany(token: string){
@@ -16,6 +17,17 @@ async function findMany(token: string){
     }
 }
 
+
+async function findProductBySlug(token:string, slug:string) {
+    try {
+        const data = await productService.findBySlug(slug);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export {
     findMany,
+    findProductBySlug,
 }

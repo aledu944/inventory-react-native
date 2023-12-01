@@ -1,12 +1,19 @@
-import { ProductsScreen, SystemScreen } from '../screens';
-import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
-import { globalColors, globalStyles } from '../theme/theme';
-import Icon from 'react-native-vector-icons/Feather';
 import { Image, Pressable, Text, View } from 'react-native';
-import { useAuth } from '../hooks';
-import { StatusBar } from 'expo-status-bar';
+import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
 
-const Drawer = createDrawerNavigator();
+import { useAuth } from '../hooks';
+import { globalColors } from '../theme/theme';
+import Icon from 'react-native-vector-icons/Feather';
+import { ProductScreen, ProductsScreen, SystemScreen } from '../screens';
+
+export type AppNavigatorParams = {
+    Products: undefined,
+    Product: { slug: string },
+    System: undefined,
+} 
+
+
+const Drawer = createDrawerNavigator<AppNavigatorParams>();
 
 export const AppNavigator = () => {
     return (
@@ -38,6 +45,16 @@ export const AppNavigator = () => {
                         name="shopping-bag" size={20} />
                 }}
                 component={ProductsScreen}
+            />
+            <Drawer.Screen
+                name="Product"
+                
+                options={{
+                    drawerItemStyle: { display: 'none' },    
+                    drawerIcon: ({ color }) => <Icon color={color}
+                        name="shopping-bag" size={20} />
+                }}
+                component={ProductScreen}
             />
             <Drawer.Screen
                 name="System"
