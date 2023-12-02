@@ -13,6 +13,18 @@ async function findAllCategories(): Promise<Category[]> {
     }
 }
 
+async function findCategoryBySlug(slug: string) {
+    try {
+        const category = await categoryService.findBy(slug);
+        return category;
+        
+    } catch (error) {
+        throw error;
+    }
+    
+}
+
 export {
     findAllCategories,
+    findCategoryBySlug
 }

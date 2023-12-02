@@ -1,7 +1,7 @@
 import inventoryApi from "../../data";
-import { Category } from "../models";
+import { Category, FullCategory } from "../models";
 
-export async function findMany(): Promise<Category[]> {
+async function findMany(): Promise<Category[]> {
     try {
         const { data } = await inventoryApi.get<Category[]>('/categories');
         return data;
@@ -10,7 +10,17 @@ export async function findMany(): Promise<Category[]> {
     }
 }
 
+async function findBy(term:string): Promise<FullCategory> {
+    try {
+        const { data } = await inventoryApi.get<FullCategory>(`/categories/${ term }`);
+        return data;
+    }catch (error) {
+        throw error;
+    }
+    
+}
 
 export default {
     findMany,
+    findBy,
 }

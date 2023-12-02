@@ -1,3 +1,5 @@
+export { CategoryScreen } from "./categories/CategoryScreen";
+
 // PRODUCTS
 export { ProductsScreen } from "./products/ProductsScreen";
 export { ProductScreen } from "./products/ProductScreen";
