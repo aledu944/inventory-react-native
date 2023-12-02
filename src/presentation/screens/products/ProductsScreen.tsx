@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { FlatList, ScrollView, Text, View } from 'react-native'
+import { FlatList, RefreshControl, ScrollView, Text, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { globalStyles } from '../../theme/theme';
@@ -12,6 +12,7 @@ export const ProductsScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [refreshing, setRefreshing] = useState(false)
 
     const getAllProducts = async () => {
         setIsLoading(true);
@@ -37,7 +38,6 @@ export const ProductsScreen = () => {
         return <CircularProgress />
     }
 
-
     return (
         <View style={{ flex: 1, ...globalStyles.container }}>
             <StatusBar style='light' />
@@ -60,7 +60,7 @@ export const ProductsScreen = () => {
 
                     </>
                 }
-                showsVerticalScrollIndicator={ false }
+                showsVerticalScrollIndicator={false}
                 numColumns={2}
                 columnWrapperStyle={{ gap: 24 }}
                 contentContainerStyle={{ gap: 24, paddingBottom: 20, paddingHorizontal: 10 }}
