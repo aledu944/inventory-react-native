@@ -42,7 +42,6 @@ const globalShadows = StyleSheet.create({
 export const globalStyles = StyleSheet.create({
     // REUSABLE
     container: {
-        flex: 1,
         paddingHorizontal: 15,
         paddingVertical: 10,
     },
@@ -113,6 +112,17 @@ export const globalStyles = StyleSheet.create({
         gap: 10,
         ...globalShadows.shadow_md
     },
+
+    // CATEGORIES
+    categoryCard: {
+        flexDirection: 'row',
+        alignItems: "center",
+        backgroundColor: 'white',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 10,
+        ...globalShadows.shadow_sm,
+    }
 
     
 })

@@ -35,28 +35,32 @@ export const ProductScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView showsVerticalScrollIndicator={ false }>
-                <Text style={{ ...globalStyles.title1, textAlign: 'center', marginBottom: 20 }}>{product.name}</Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <Text style={{ ...globalStyles.title1, textAlign: 'center', marginBottom: 20 }}>{product?.name}</Text>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image
                         style={{ width: 300, height: 300 }}
-                        source={{ uri: product.image }}
+                        source={{ uri: product?.image }}
                     />
                 </View>
                 <View style={{ ...globalStyles.container, gap: 20 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View>
-                            <Text style={{ ...globalStyles.title1 }}>{product.name}</Text>
-                            <Text>{product.brand.name}</Text>
+                            <Text style={{ ...globalStyles.title1 }}>{product?.name}</Text>
+                            <Text>{product?.brand?.name}</Text>
                         </View>
-                        <Text style={{ color: globalColors.primary, fontWeight: 'bold', ...globalStyles.title1 }}>{product.price} Bs</Text>
+                        <Text style={{ color: globalColors.primary, fontWeight: 'bold', ...globalStyles.title1 }}>{product?.price} Bs</Text>
                     </View>
-                    <View>
+                    <View style={{ gap: 16 }}>
                         <Text style={{ ...globalStyles.title1, marginBottom: 2 }}>Detalles del producto</Text>
-                        <Text style={globalStyles.title2}>Categoria</Text>
-                        <Text style={{ color: globalColors.dark[700] }}>{product.category.name}</Text>
-                        <Text style={globalStyles.title2}>Descripcion</Text>
-                        <Text style={{ color: globalColors.dark[700] }}>{product.description}</Text>
+                        <View>
+                            <Text style={globalStyles.title2}>Categoria</Text>
+                            <Text style={{ color: globalColors.dark[700] }}>{product?.category?.name}</Text>
+                        </View>
+                        <View>
+                            <Text style={globalStyles.title2}>Descripcion</Text>
+                            <Text style={{ color: globalColors.dark[700] }}>{product?.description}</Text>
+                        </View>
                     </View>
                     <PrimaryButton onPress={() => console.log('')} label='Agregar al carrito' />
                 </View>
