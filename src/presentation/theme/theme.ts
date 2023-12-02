@@ -7,6 +7,9 @@ export const globalColors = {
 
     dark: {
         100: 'rgba(0,0,0,0.05)',
+        200: 'rgba(0,0,0,0.1)',
+        500: 'rgba(0,0,0,0.4)',
+        700: 'rgba(0,0,0,0.6)',
     },
 
     borderColor: 'rgba(0,0,0,0.2)',

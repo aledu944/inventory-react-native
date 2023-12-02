@@ -48,8 +48,8 @@ export const AppNavigator = () => {
             />
             <Drawer.Screen
                 name="Product"
-                
                 options={{
+                    headerShown: false,
                     drawerItemStyle: { display: 'none' },    
                     drawerIcon: ({ color }) => <Icon color={color}
                         name="shopping-bag" size={20} />

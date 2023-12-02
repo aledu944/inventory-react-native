@@ -5,7 +5,7 @@ import { globalColors } from '../../theme/theme';
 export const CircularProgress = () => {
     return (
         <View style={{ flex:1, justifyContent:'center', alignItems: 'center' }}>
-            <ActivityIndicator size={20} color={ globalColors.primary }/>
+            <ActivityIndicator size={30} color={ globalColors.primary }/>
         </View>
     )
 }

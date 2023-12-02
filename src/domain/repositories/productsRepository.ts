@@ -1,5 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import inventoryApi from "../../data";
-import { Product } from "../models";
+import { FullProduct, Product } from "../models";
 import productService from "../services/productService";
 
 
@@ -18,9 +19,10 @@ async function findMany(token: string){
 }
 
 
-async function findProductBySlug(token:string, slug:string) {
+async function findProductBySlug(slug:string): Promise<FullProduct> {
+    const token = await AsyncStorage.getItem('AUTH_TOKEN');
     try {
-        const data = await productService.findBySlug(slug);
+        const data = await productService.findBySlug(token, slug);
         return data;
     } catch (error) {
         throw error;
