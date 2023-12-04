@@ -4,10 +4,11 @@ import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, c
 import { useAuth } from '../hooks';
 import { globalColors } from '../theme/theme';
 import Icon from 'react-native-vector-icons/Feather';
-import { CategoryScreen, ProductScreen, ProductsScreen, SystemScreen } from '../screens';
+import { CartScreen, CategoryScreen, ProductScreen, ProductsScreen, SystemScreen } from '../screens';
 
 export type AppNavigatorParams = {
     Products: undefined,
+    Cart: undefined,
     Category: { slug: string },
     Product: { slug: string },
     System: undefined,
@@ -22,8 +23,8 @@ export const AppNavigator = () => {
 
         <Drawer.Navigator
             drawerContent={CustomDrawerContent}
-            screenOptions={{
-
+            screenOptions={{    
+                headerShadowVisible: false,
                 drawerType: 'slide',
                 drawerActiveBackgroundColor: globalColors.primary,
                 drawerActiveTintColor: 'white',
@@ -46,6 +47,15 @@ export const AppNavigator = () => {
                         name="shopping-bag" size={20} />
                 }}
                 component={ProductsScreen}
+            />
+            <Drawer.Screen
+                name="Cart"
+                options={{
+                    title: 'Carrito',
+                    drawerIcon: ({ color }) => <Icon color={color}
+                        name="shopping-cart" size={20} />
+                }}
+                component={CartScreen}
             />
             <Drawer.Screen
                 name="Product"

@@ -1,3 +1,4 @@
+export { Cart } from './cart/Cart';
 
 // PRODUCT
 export { FullProduct } from './products/FullProduct';

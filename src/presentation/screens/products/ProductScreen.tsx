@@ -1,18 +1,22 @@
-import { Image, ScrollView, Text, View } from 'react-native'
 import { useEffect, useState } from 'react';
+import { Image, ScrollView, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { RouteProp, useRoute } from '@react-navigation/native'
 import { AppNavigatorParams } from '../../routes/AppNavigator';
 
+import { useCart } from '../../hooks';
 import { FullProduct } from '../../../domain/models';
 import { productsRepository } from '../../../domain';
 import { CircularProgress, PrimaryButton } from '../../components';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalColors, globalStyles } from '../../theme/theme';
 
 export const ProductScreen = () => {
 
+    const { addProductToCart } = useCart();
+    
     const [isLoading, setIsLoading] = useState(false);
     const [product, setProduct] = useState<FullProduct>({} as FullProduct)
+
 
     const { slug } = useRoute<RouteProp<AppNavigatorParams, 'Product'>>().params;
 
@@ -62,7 +66,7 @@ export const ProductScreen = () => {
                             <Text style={{ color: globalColors.dark[700] }}>{product?.description}</Text>
                         </View>
                     </View>
-                    <PrimaryButton onPress={() => console.log('')} label='Agregar al carrito' />
+                    <PrimaryButton onPress={() => addProductToCart(product)} label='Agregar al carrito' />
                 </View>
             </ScrollView>
         </SafeAreaView>

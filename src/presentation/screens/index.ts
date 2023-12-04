@@ -1,3 +1,5 @@
+export { CartScreen } from "./cart/CartScreen";
+
 export { CategoryScreen } from "./categories/CategoryScreen";
 
 // PRODUCTS

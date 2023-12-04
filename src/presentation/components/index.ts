@@ -1,3 +1,5 @@
+// CART
+export { CartProduct } from "./cart/CartProduct";
 
 export { CategoryCard } from "./categories/CategoryCard";
 export { CategoryList } from "./categories/CategoryList";
@@ -13,3 +15,4 @@ export { ProductCard } from "./products/ProductCard";
 // AUTH
 export { LoginForm } from "./auth/LoginForm";
 export { RegisterForm } from "./auth/RegisterForm";
+
