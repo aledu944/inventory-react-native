@@ -7,7 +7,13 @@ interface ContextProps {
     session: { user: User | undefined, token: string | undefined };
     
     closeSession(): Promise<void>
-    loginWithEmailAndPassword: (email: string, password: string) => Promise<void>
+    loginWithEmailAndPassword: (email: string, password: string) => Promise<void>;
+    createNewAccount(client: {
+        email: string;
+        password: string;
+        lastname: string;
+        name: string;
+    }): Promise<void>
 }
 
 export const AuthContext = createContext({} as ContextProps);

@@ -10,6 +10,7 @@ import { axiosError } from "../../../helpers";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     
+    const [isLoading, setIsLoading] = useState(false);
     const [authState, setAuthState] = useState<'auth' | 'not-auth' |  'checking'>('checking');
 
     const [session, setSession] = useState<{ user: User | undefined, token: string | undefined }>({
@@ -21,16 +22,39 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
     async function loginWithEmailAndPassword(email:string, password:string) {
+        setIsLoading(true)
         try {
             const data = await authRepository.login(email, password);
             await AsyncStorage.setItem('AUTH_TOKEN', data.token);
             setSession({ user: data.user, token: data.token });
             setAuthState('auth');
+            setIsLoading(false)
 
         } catch (error) {
             setAuthState('not-auth');
             axiosError(error);
         }
+        setIsLoading(false)
+
+    }
+
+
+    async function createNewAccount(client:{ email: string, password: string, lastname: string, name: string}) {
+        setIsLoading(true)
+
+        try {
+            const data = await authRepository.newAccount(client)
+            await AsyncStorage.setItem('AUTH_TOKEN', data.token);
+            setSession({ user: data.user, token: data.token });
+            setAuthState('auth');
+        } catch (error) {
+            setAuthState('not-auth');
+            axiosError(error);
+            setIsLoading(false)
+
+        }
+        setIsLoading(false)
+
     }
 
     async function closeSession() {
@@ -74,6 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 // METHODS
                 closeSession,
                 loginWithEmailAndPassword,
+                createNewAccount
             }}
         
         >

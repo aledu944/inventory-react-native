@@ -1,5 +1,6 @@
 import inventoryApi from "../../data"
 import { LoginResponse } from "../models";
+import { ClientRegister } from "../models/auth/ClientRegister";
 
 async function login( email: string, password: string){
     try {
@@ -24,7 +25,18 @@ async function checkAuth( token: string ){
 }
 
 
+async function newAccount(client:{ email: string, password: string, lastname: string, name: string}) {
+    try {
+        const { data } = await inventoryApi.post<ClientRegister>('/auth/register/client', client);
+        return data;
+        
+    } catch (error) {
+        throw error;
+    }
+}
+
 export default {
     login,
-    checkAuth
+    checkAuth,
+    newAccount
 }

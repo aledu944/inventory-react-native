@@ -61,7 +61,11 @@ export const ProfileScreen = () => {
                             </View>
                         </View>
                     )}
-
+                    ListEmptyComponent={() => (
+                        <View>
+                            <Text>Aun no realizo ninguna compra</Text>
+                        </View>
+                    )}
                     ListHeaderComponent={() => (
                         <View style={{ marginBottom: 30, flexDirection: 'row', alignItems: 'center', gap: 30 }}>
                             <Image
