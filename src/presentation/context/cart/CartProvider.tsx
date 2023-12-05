@@ -63,6 +63,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     };
 
+    const resetCart = () => {
+        setCart([]);
+    }
+
 
     useEffect(() => {
         calculateTotal();
@@ -75,6 +79,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                 cart,
                 total,
                 // METHODS
+                resetCart,
                 addProductToCart,
                 decreaseQuantity,
                 removeProductFromCart,

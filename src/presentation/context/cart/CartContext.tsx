@@ -5,7 +5,7 @@ interface ContextProps {
     
     cart: Cart[];
     total: number;
-
+    resetCart: () => void;
     decreaseQuantity: (productId: string) => void;
     removeProductFromCart: (productId: string) => void;
     addProductToCart(product: FullProduct): Promise<void>;

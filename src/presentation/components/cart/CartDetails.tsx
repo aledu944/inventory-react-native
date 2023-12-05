@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text } from 'react-native';
 
-import { useAuth, useCart } from '../../hooks';
+import { useAuth, useCart, useOrders } from '../../hooks';
 import { globalStyles } from '../../theme/theme';
 import { PrimaryButton } from '../shared/PrimaryButton';
 import { formatCurrency } from '../../../helpers/format-currency';
@@ -10,9 +10,10 @@ export const CartDetails = () => {
 
     const { total } = useCart();
     const { session } = useAuth();
+    const { createNewOrder, isLoading } = useOrders();
 
     const handleSubmit = () => {
-        
+        createNewOrder({ clientId: session.user.id, total: total });
     }
     
     return (
@@ -31,8 +32,8 @@ export const CartDetails = () => {
 
             <Text style={globalStyles.title2}>Total a pagar: { formatCurrency( total ) }</Text>
             <PrimaryButton
-                label='Realizar compra'
-                onPress={() => console.log('comprando')}
+                label={ isLoading ? 'Cargando...' : 'Realizar compra' }
+                onPress={handleSubmit}
             />
         </View>
     )
