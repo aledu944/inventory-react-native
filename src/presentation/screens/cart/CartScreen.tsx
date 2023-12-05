@@ -1,6 +1,6 @@
 
-import { Text, View, FlatList, Image, Pressable } from 'react-native';
-import { globalStyles } from '../../theme/theme';
+import { Text, View, FlatList } from 'react-native';
+import { globalColors, globalStyles } from '../../theme/theme';
 import { useCart } from '../../hooks';
 import { CartProduct } from '../../components';
 import { CartDetails } from '../../components/cart/CartDetails';
@@ -27,7 +27,15 @@ export const CartScreen = () => {
                     </View>
                 )}
 
-                ListFooterComponent={<CartDetails />}
+                ListFooterComponent={
+                    cart.length === 0
+                    ? (
+                        <View>
+                            <Text style={{ textAlign:'center', color:globalColors.dark[500], fontSize: 18 }}>No hay producto en el carrito</Text>
+                        </View>
+                    )
+                    : <CartDetails />
+                }
             />
         </View>
     )

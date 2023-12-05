@@ -3,6 +3,7 @@ import { Cart } from '../../../domain/models';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useCart } from '../../hooks';
+import { formatCurrency } from '../../../helpers/format-currency';
 
 interface Props {
     cartItem: Cart; 
@@ -23,7 +24,7 @@ export const CartProduct = ({ cartItem }: Props) => {
                 </View>
                 <View>
                     <Text style={{ fontWeight: 'bold' }}>{cartItem.product.name}</Text>
-                    <Text>Precio: ${cartItem.product.price}</Text>
+                    <Text>Precio: {formatCurrency(cartItem.product.price)}</Text>
                     <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems:'center', width: '60%' }}>
                         <View style={{
                             flexDirection: 'row',
