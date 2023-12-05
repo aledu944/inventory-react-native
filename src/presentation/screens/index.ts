@@ -1,3 +1,5 @@
+export { ProfileScreen } from "./profile/ProfileScreen";
+
 export { CartScreen } from "./cart/CartScreen";
 
 export { CategoryScreen } from "./categories/CategoryScreen";

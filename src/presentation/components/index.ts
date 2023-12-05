@@ -1,6 +1,9 @@
+
+
 // CART
 export { CartProduct } from "./cart/CartProduct";
 
+// CATEGORIES
 export { CategoryCard } from "./categories/CategoryCard";
 export { CategoryList } from "./categories/CategoryList";
 

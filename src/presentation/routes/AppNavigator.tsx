@@ -4,14 +4,16 @@ import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, c
 import { useAuth } from '../hooks';
 import { globalColors } from '../theme/theme';
 import Icon from 'react-native-vector-icons/Feather';
-import { CartScreen, CategoryScreen, ProductScreen, ProductsScreen, SystemScreen } from '../screens';
+import { CartScreen, CategoryScreen, ProductScreen, ProductsScreen, ProfileScreen, SystemScreen } from '../screens';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 export type AppNavigatorParams = {
-    Products: undefined,
     Cart: undefined,
+    System: undefined,
+    Profile: undefined,
+    Products: undefined,
     Category: { slug: string },
     Product: { slug: string },
-    System: undefined,
 }
 
 
@@ -23,7 +25,7 @@ export const AppNavigator = () => {
 
         <Drawer.Navigator
             drawerContent={CustomDrawerContent}
-            screenOptions={{    
+            screenOptions={{
                 headerShadowVisible: false,
                 drawerType: 'slide',
                 drawerActiveBackgroundColor: globalColors.primary,
@@ -67,7 +69,16 @@ export const AppNavigator = () => {
                 }}
                 component={ProductScreen}
             />
-
+            <Drawer.Screen
+                name="Profile"
+                options={{
+                    title: 'Perfil',
+                    drawerItemStyle: { display: 'none' },
+                    drawerIcon: ({ color }) => <Icon color={color}
+                        name="shopping-bag" size={20} />
+                }}
+                component={ProfileScreen}
+            />
             <Drawer.Screen
                 name="Category"
                 options={{
@@ -93,18 +104,24 @@ export const AppNavigator = () => {
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
     const { session, closeSession } = useAuth();
+    const navigation = useNavigation<NavigationProp<AppNavigatorParams>>();
+    
     const { user } = session;
+    
+    const handleNavigate = () => {
+        navigation.navigate('Profile')
+    }
 
     return (
         <DrawerContentScrollView>
-            <View style={{ paddingHorizontal: 15, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+            <Pressable onPress={handleNavigate} style={{ paddingHorizontal: 15, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
                 <Image
                     source={{ uri: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }}
                     style={{ width: 70, height: 70, borderRadius: 100, marginBottom: 20 }}
                 />
                 <Text style={{ textAlign: 'center', fontSize: 12, fontWeight: '600' }}>{user.name + ' ' + user.lastname}</Text>
                 <Text style={{ textAlign: 'center', fontSize: 12 }}>{user.email}</Text>
-            </View>
+            </Pressable>
 
             <DrawerItemList {...props} />
             <View style={{ paddingHorizontal: 15, marginTop: 20 }}>

@@ -47,13 +47,18 @@ export const globalStyles = StyleSheet.create({
     },
 
     title1: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
     },
 
     title2: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
+    },
+
+    title3: {
+        fontSize: 16,
+        fontWeight: '500',
     },
 
     // COMPONENTS
