@@ -36,7 +36,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         if (existingProductIndex !== -1) {
             const updatedCart = [...cart];
             updatedCart[existingProductIndex].quantity += quantity;
-            showToastWithGravity('El producto ya se encuentra en el carrito')
             setCart(updatedCart);
         } else {
             setCart((prevCart) => [...prevCart, { quantity, product }]);
