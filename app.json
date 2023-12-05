@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "inventory-mobile-app",
-    "slug": "inventory-mobile-app",
+    "slug": "inventory-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mattiadu944.inventorymobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "51d9b8a6-512f-4972-8d54-e59bc2f2bbd8"
+      }
+    },
+    "owner": "mattiadu944"
   }
 }
